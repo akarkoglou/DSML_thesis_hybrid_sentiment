@@ -3,7 +3,6 @@ from torch.optim import SGD
 
 
 class EmGD(SGD):
-
     def __init__(self, params, lr, momentum=0, m=1, k=0):
         if lr < 0.0:
             raise ValueError("Invalid learning rate: {}".format(lr))
@@ -15,7 +14,6 @@ class EmGD(SGD):
             raise ValueError("Invalid confidence value: {}".format(k))
 
         defaults = dict(lr=lr, momentum=momentum, m=m, k=k)
-
         super(SGD, self).__init__(params, defaults)
 
     def step(self, closure=None):
