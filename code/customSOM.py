@@ -1,8 +1,8 @@
 from quicksom.som import SOM
 import numpy as np
-
 import torch
 import time
+
 
 class customSOM(SOM):
     def __init__(self, m, n, dim,
@@ -25,9 +25,8 @@ class customSOM(SOM):
                          p_norm)
 
     def scheduler(self, it, tot):
-        #modified linear scheduler
         if self.sched == 'linear':
-            b = (self.niter - 1) / (100 - 1)
+            b = (niter - 1) / (100 - 1)
             return b / (it + b)
         # half the lr 20 times
         if self.sched == 'half':
@@ -116,3 +115,4 @@ class customSOM(SOM):
 
     if __name__ == '__main__':
         pass
+
