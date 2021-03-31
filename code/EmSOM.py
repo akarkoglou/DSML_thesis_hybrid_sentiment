@@ -28,9 +28,10 @@ class EmSOM(nn.Module):
             bmus.append(centr_topology[x, y])
 
         bmus = list(map(torch.mean, bmus))
-        return (torch.Tensor(bmus).cpu())
+        return (torch.Tensor(bmus).to(self.device))
 
     def forward(self, x):
+        x = x.to(self.device)
         bmus = self.find_bmus(self.som, x)
         x = torch.cat((x, bmus.unsqueeze(1)), dim=1)
 
