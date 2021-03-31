@@ -26,7 +26,7 @@ class customSOM(SOM):
 
     def scheduler(self, it, tot):
         if self.sched == 'linear':
-            b = (niter - 1) / (100 - 1)
+            b = (self.niter - 1) / (100 - 1)
             return b / (it + b)
         # half the lr 20 times
         if self.sched == 'half':
