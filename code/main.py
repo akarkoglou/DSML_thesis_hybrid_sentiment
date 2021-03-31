@@ -58,9 +58,10 @@ som_hidd = customSOM(m, n, 60, niter=niter, device=device, sigma=5, alpha=0.5, s
 
 #Model initilization
 model = EmSOM(som, som_hidd)
+model.to(device)
 
 #hidden output data
-_, hidd_out = model(X.cpu())
+_, hidd_out = model(X)
 X_hidd = hidd_out.to(device)
 
 learning_error = som.fit(X, batch_size=batch_size, print_each=10)
@@ -88,7 +89,7 @@ for epoch in range(epochs):
     labels = torch.cat([data[1] for data in train_loader])
     hot_labels_0 = one_hot(labels, num_classes=40)
 
-    sum_sqr = (out_0 - hot_labels_0.float()) ** 2
+    sum_sqr = (out_0.cpu() - hot_labels_0.float()) ** 2
     sr_sqr = torch.sqrt(sum_sqr.sum(dim=1))
     e_0 = torch.mean(sr_sqr)
 
@@ -106,7 +107,7 @@ for epoch in range(epochs):
 
         optimizer.zero_grad()
 
-        loss = 0.5 * criterion(out, hot_labels.float())
+        loss = 0.5 * criterion(out.cpu(), hot_labels.float())
 
         loss.backward()
         optimizer.step()
@@ -117,7 +118,7 @@ for epoch in range(epochs):
 
         pred = torch.argmax(out, dim=1)
 
-        corrects += (pred == labels).sum().item()
+        corrects += (pred.cpu() == labels).sum().item()
         total += len(pred)
 
         acc = corrects / total
