@@ -3,7 +3,7 @@
 This is an implementation of the hybrid model described in the scientific paper "Two novel hybrid Self-Organizing Map based emotional learning
 algorithms"[[1]](#1). 
 
-Part of the DSML Master's thesis that can be found [here](http://artemis.cslab.ece.ntua.gr:8080/jspui/).
+Part of the DSML Master's thesis that can be found [here](http://artemis.cslab.ece.ntua.gr:8080/jspui/handle/123456789/17931).
 
 # Technologies
 * Python 3.8.3
